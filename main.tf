@@ -9,7 +9,7 @@ data "archive_file" "hello" {
   output_path = "outputs/hello.zip"
 }
 
-resource "aws_lambda_function" "test_lambda" {
+resource "aws_lambda_function" "myLambda" {
   filename      = "outputs/hello.zip"
   function_name = "hello"
   role          = aws_iam_role.lambda_role.arn
