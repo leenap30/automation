@@ -2,13 +2,25 @@ provider "aws" {
    region = "us-east-1"
 }
 
-resource "aws_lambda_function" "myLambda" {
-   function_name = "firstFunction"
-   
-   handler = "hello.handler"
+
+data "archive_file" "hello" {
+  type        = "zip"
+  source_file = "hello.js"
+  output_path = "outputs/hello.zip"
+}
+
+resource "aws_lambda_function" "test_lambda" {
+  filename      = "outputs/hello.zip"
+  function_name = "hello"
+  role          = aws_iam_role.lambda_role.arn
+  handler       = "hello.handler"
+
+ 
+  # source_code_hash = filebase64sha256("outputs/welcome.zip")
+
    runtime = "nodejs12.x"
 
-   role = aws_iam_role.lambda_role.arn
+
 }
 
  # IAM role which dictates what other AWS services the Lambda function
