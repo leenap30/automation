@@ -121,7 +121,7 @@ resource "aws_api_gateway_deployment" "apideploy" {
 
 
 output "base_url" {
-  value = aws_api_gateway_deployment.apideploy.invoke_url > op.txt
+  value = aws_api_gateway_deployment.apideploy.invoke_url >> op.txt
 }
 
 #s3 bucket
