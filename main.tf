@@ -49,6 +49,10 @@ EOF
 }
 
 #API gateway trigger
+resource "aws_api_gateway_rest_api" "apiLambda" {
+  name        = "myAPI"
+}
+
 resource "aws_api_gateway_resource" "proxy" {
    rest_api_id = aws_api_gateway_rest_api.apiLambda.id
    parent_id   = aws_api_gateway_rest_api.apiLambda.root_resource_id
