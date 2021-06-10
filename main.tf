@@ -123,7 +123,7 @@ resource "aws_lambda_permission" "apigw" {
 
 
   output "base_url" {
-  command = "echo ${aws_api_gateway_deployment.apideploy.invoke_url} > op.txt"
+  value = "echo ${aws_api_gateway_deployment.apideploy.invoke_url} >> op.txt"
 }
 
 #s3 bucket
