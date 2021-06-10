@@ -54,12 +54,7 @@ resource "aws_apigatewayv2_api" "apiLambda" {
   protocol_type = "HTTP"
 }
 
-   resource "aws_apigatewayv2_integration" "apiLambda" {
-   uri                     = aws_lambda_function.myLambda.invoke_arn
-   integration_type = "MOCK"
-}
-
-resource "aws_apigatewayv2_integration" "example" {
+ resource "aws_apigatewayv2_integration" "example" {
   api_id           = aws_apigatewayv2_api.apiLambda.id
   integration_type = "AWS"
 
