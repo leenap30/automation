@@ -62,12 +62,12 @@ resource "aws_apigatewayv2_api" "apiLambda" {
   content_handling_strategy = "CONVERT_TO_TEXT"
   description               = "Lambda example"
   integration_method        = "POST"
-  integration_uri           = aws_lambda_function.example.invoke_arn
+  integration_uri           = aws_lambda_function.apiLambda.invoke_arn
   passthrough_behavior      = "WHEN_NO_MATCH"
 }
 
   output "base_url" {
-  value = "echo ${aws_api_gateway_deployment.apideploy.invoke_url} >> op.txt"
+  value = "echo ${aws_api_gateway_deployment.apiLambda.invoke_url} >> op.txt"
 }
 
 #s3 bucket
