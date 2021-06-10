@@ -59,7 +59,7 @@ resource "aws_apigatewayv2_api" "apiLambda" {
    integration_type = "MOCK"
 }
 
-resource "aws_apigatewayv2_integration" "apiLambda" {
+resource "aws_apigatewayv2_integration" "example" {
   api_id           = aws_apigatewayv2_api.apiLambda.id
   integration_type = "AWS"
 
