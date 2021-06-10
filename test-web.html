@@ -1,0 +1,32 @@
+<!DOCTYPE html> 
+<html>
+<body>
+ 
+<select id="selector" onchange="show(this)" ></select><br> 
+<iframe id="videoDisplay" width="480" height="400"></iframe> 
+			
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
+<script> 
+   $.ajax({ 
+		url: "./op.txt",
+		dataType: 'json', 
+		success:function(urls){ 
+		    populate(urls); 
+		} 
+	}); 
+	
+	function populate(urls) { 
+		var e = document.getElementById('selector'); 
+		for (var i = 0; i < urls.length; i++) { 
+			e.innerHTML  = e.innerHTML + '<option value="' + i + '">' + urls[i] + '</option>';
+			}
+		}
+		
+		function show(e) { 
+			var videoDisplay = document.getElementById('videoDisplay'); 
+			videoDisplay.src = e.options[e.selectedIndex].text; 
+		}
+		
+</script> 
+</body> 
+</html>
