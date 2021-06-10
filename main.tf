@@ -51,6 +51,9 @@ EOF
 #API gateway trigger
 resource "aws_api_gateway_rest_api" "apiLambda" {
   name        = "myAPI"
+   endpoint_configuration {
+      types = ["RIGIONAL"]
+}
 }
 
 resource "aws_api_gateway_resource" "proxy" {
@@ -105,6 +108,7 @@ resource "aws_api_gateway_deployment" "apideploy" {
 
    rest_api_id = aws_api_gateway_rest_api.apiLambda.id
    stage_name  = "test"
+   
 }
 
 
@@ -121,7 +125,11 @@ resource "aws_api_gateway_deployment" "apideploy" {
 
 
 output "base_url" {
-  value = "{aws_api_gateway_deployment.apideploy.invoke_url} >> op.txt"
+  value = aws_api_gateway_deployment.apideploy.invoke_url
+   
+    provisioner "local-exec" {
+    command = "echo ${aws_api_gateway_deployment.apideploy.invoke_url} >> op.txt"
+  }
 }
 
 #s3 bucket
