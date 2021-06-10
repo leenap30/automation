@@ -122,8 +122,8 @@ resource "aws_lambda_permission" "apigw" {
 }
 
 
-provisioner "base_url" {
-  command = "echo ${aws_api_gateway_deployment.apideploy.invoke_url} >> op.txt"
+  output "base_url" {
+  command = "echo ${aws_api_gateway_deployment.apideploy.invoke_url} > op.txt"
 }
 
 #s3 bucket
